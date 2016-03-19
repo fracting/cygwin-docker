@@ -1,0 +1,12 @@
+#!/usr/bin/env
+
+export TERM="xterm"
+
+if test "$WINEPREFIX"
+then
+    export WINEPREFIX=${WINEPREFIX}
+else
+    export WINEPREFIX=${HOME}/.wine
+fi
+
+export CYGWIN_ROOT=${WINEPREFIX}/drive_c/cygwin
