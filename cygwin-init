@@ -27,9 +27,10 @@ else
     sleep 3
     pushd ${WINEPREFIX}/drive_c > /dev/null
     wget https://cygwin.com/setup-x86.exe
-    wine setup-x86.exe --site http://mirrors.neusoft.edu.cn/cygwin -W -q
+    mkdir /tmp/cygwin
+    wine setup-x86.exe --site http://mirrors.neusoft.edu.cn/cygwin --local-package-dir Z:/tmp/cygwin -W -q
     setfattr -x user.wine.sd ${CYGWIN_ROOT}/tmp/
-    wine setup-x86.exe --site http://mirrors.neusoft.edu.cn/cygwin -W -P mintty -q
+    wine setup-x86.exe --site http://mirrors.neusoft.edu.cn/cygwin --local-package-dir Z:/tmp/cygwin -W -P mintty -q
     wineserver -w
     cygwin -c echo Init CYGWIN done.
     popd > /dev/null
