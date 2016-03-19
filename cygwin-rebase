@@ -3,5 +3,12 @@
 . /etc/cygwin-env
 
 pushd ${CYGWIN_ROOT} > /dev/null
+cat > autorebase.bat << EOF
+echo off
+
+set PATH=%~dp0\bin;%PATH%
+dash /bin/rebaseall -p
+EOF
+
 WINEDEBUG=-all DISPLAY=:55.0 wine wineconsole --backend=curses autorebase.bat > /dev/null ; wineserver -w
 popd > /dev/null
