@@ -1,0 +1,16 @@
+build:
+  image: drone/golang:1.5
+  commands:
+    - echo 'nothing to do'
+
+publish:
+  docker:
+    username: fracting
+    password: $$DOCKER_PASS
+    email: $$DOCKER_EMAIL
+    repo: fracting/cygwin32
+    tag:
+      - "latest"
+    when:
+      repo: fracting/cygwin32-docker
+      branch: master
