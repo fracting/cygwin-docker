@@ -28,11 +28,12 @@ else
     pushd ${WINEPREFIX}/drive_c > /dev/null
     wget https://cygwin.com/setup-x86.exe
     mkdir /tmp/cygwin
-    wine setup-x86.exe --site http://mirrors.neusoft.edu.cn/cygwin --local-package-dir Z:/tmp/cygwin -W -q
+    WINEDEBUG=fixme-all wine setup-x86.exe --site http://mirrors.neusoft.edu.cn/cygwin --local-package-dir Z:/tmp/cygwin -W -q
     # Skip this workaround since ~/.wine in Drone CI is mounted on a filesystem without xattr support
     #setfattr -x user.wine.sd ${CYGWIN_ROOT}/tmp/
-    wine setup-x86.exe --site http://mirrors.neusoft.edu.cn/cygwin --local-package-dir Z:/tmp/cygwin -W -P mintty -q
+    WINEDEBUG=fixme-all wine setup-x86.exe --site http://mirrors.neusoft.edu.cn/cygwin --local-package-dir Z:/tmp/cygwin -W -P mintty -q
     wineserver -w
+    unset DISPLAY
     cygwin -c echo Init CYGWIN done.
     popd > /dev/null
 fi
