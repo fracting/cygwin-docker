@@ -29,7 +29,8 @@ else
     wget https://cygwin.com/setup-x86.exe
     mkdir /tmp/cygwin
     wine setup-x86.exe --site http://mirrors.neusoft.edu.cn/cygwin --local-package-dir Z:/tmp/cygwin -W -q
-    setfattr -x user.wine.sd ${CYGWIN_ROOT}/tmp/
+    # Skip this workaround since ~/.wine in Drone CI is mounted on a filesystem without xattr support
+    #setfattr -x user.wine.sd ${CYGWIN_ROOT}/tmp/
     wine setup-x86.exe --site http://mirrors.neusoft.edu.cn/cygwin --local-package-dir Z:/tmp/cygwin -W -P mintty -q
     wineserver -w
     cygwin -c echo Init CYGWIN done.
