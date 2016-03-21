@@ -10,7 +10,6 @@ ENV LANG en_US.UTF-8
 ENV LANGUAGE en_US:en
 ENV LC_ALL en_US.UTF-8
 ENV TERM xterm
-ENV CYGWIN winsymlinks:lnk
 # Work around https://bugs.wine-staging.com/show_bug.cgi?id=626
 ENV WINPTY_SHOW_CONSOLE 1
 COPY cygwin32-env /etc/
