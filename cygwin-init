@@ -32,7 +32,8 @@ else
     # Skip this workaround since ~/.wine in Drone CI is mounted on a filesystem without xattr support
     #setfattr -x user.wine.sd ${CYGWIN_ROOT}/tmp/
     WINEDEBUG=fixme-all wine setup-x86.exe --site http://mirrors.kernel.org/sourceware/cygwin --local-package-dir Z:/tmp/cygwin -W -P mintty -q
-    WINEDEBUG=fixme-all wine setup-x86.exe --site http://mirrors.kernel.org/sourceware/cygwin --local-package-dir Z:/tmp/cygwin -W -P gcc-g++,make,perl,cocom,gettext,gettext-devel,zlib-devel,libiconv-devel,mingw64-i686-gcc-g++,mingw64-i686-zlib,mingw64-x86_64-gcc-core -q    wineserver -w
+    WINEDEBUG=fixme-all wine setup-x86.exe --site http://mirrors.kernel.org/sourceware/cygwin --local-package-dir Z:/tmp/cygwin -W -P gcc-g++,make,perl,cocom,gettext,gettext-devel,zlib-devel,libiconv-devel,mingw64-i686-gcc-g++,mingw64-i686-zlib,mingw64-i686-gcc-core -q    
+    wineserver -w
     unset DISPLAY
     cygwin -c echo Init CYGWIN done.
     popd > /dev/null
