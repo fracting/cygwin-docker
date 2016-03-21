@@ -2,6 +2,6 @@
 
 set -e
 
-source /etc/cygwin-env
+source /etc/cygwin32-env
 
 cygwin-shell "$@"

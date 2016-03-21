@@ -1,6 +1,6 @@
 #!/bin/bash
 
-. /etc/cygwin-env
+. /etc/cygwin32-env
 
 pushd ${CYGWIN_ROOT} > /dev/null
 cat > autorebase.bat << EOF

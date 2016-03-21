@@ -12,11 +12,11 @@ ENV LC_ALL en_US.UTF-8
 ENV TERM xterm
 # Work around https://bugs.wine-staging.com/show_bug.cgi?id=626
 ENV WINPTY_SHOW_CONSOLE 1
-COPY cygwin-env /etc/
+COPY cygwin32-env /etc/
 COPY cygwin-shell /usr/bin/
 COPY cygwin-rebase /usr/bin/
-COPY cygwin-init /usr/bin/
-COPY cygwin /usr/bin/
-RUN cygwin-init
-RUN cygwin -c cp -f /usr/bin/false /usr/bin/tput
+COPY cygwin32-init /usr/bin/
+COPY cygwin32 /usr/bin/
+RUN cygwin32-init
+RUN cygwin32 -c cp -f /usr/bin/false /usr/bin/tput
 RUN cygwin-rebase
