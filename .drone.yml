@@ -5,12 +5,12 @@ build:
 
 publish:
   docker:
-    username: fracting
+    username: $$DOCKER_USER
     password: $$DOCKER_PASS
     email: $$DOCKER_EMAIL
-    repo: fracting/cygwin32
+    repo: teaci/cygwin32
     tag:
       - "latest"
     when:
-      repo: fracting/cygwin32-docker
+      repo: fracting/cygwin-docker
       branch: master
