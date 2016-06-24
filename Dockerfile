@@ -1,15 +1,7 @@
-FROM ubuntu:14.04
+FROM teaci/wine-staging
 MAINTAINER Qian Hong <qhong@codeweavers.com>
-RUN dpkg --add-architecture i386
-RUN apt-get update && apt-get install -y software-properties-common
-RUN add-apt-repository -y ppa:wine/wine-builds
-RUN apt-get update && apt-get install -y --install-recommends wine-staging winehq-staging winetricks wget xvfb winbind fonts-droid attr && apt-get clean -y
-RUN apt-get install -y language-pack-en-base language-pack-en && apt-get clean -y
-RUN locale-gen en_US.UTF-8
-ENV LANG en_US.UTF-8
-ENV LANGUAGE en_US:en
-ENV LC_ALL en_US.UTF-8
-ENV TERM xterm
+# Work around https://bugs.wine-staging.com/show_bug.cgi?id=682
+RUN wget http://security.ubuntu.com/ubuntu/pool/main/f/freetype/libfreetype6_2.5.2-1ubuntu2_i386.deb && wget http://security.ubuntu.com/ubuntu/pool/main/f/freetype/libfreetype6_2.5.2-1ubuntu2_amd64.deb && dpkg -i libfreetype6_2.5.2-1ubuntu2_amd64.deb libfreetype6_2.5.2-1ubuntu2_i386.deb
 # Work around https://bugs.wine-staging.com/show_bug.cgi?id=626
 ENV WINPTY_SHOW_CONSOLE 1
 COPY cygwin32-env /etc/
