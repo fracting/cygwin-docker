@@ -1,5 +1,7 @@
 build:
   image: dflemstr/drone-dind
   commands:
+    - apt-get update -y
+    - apt-get install -y strace
     - strace sh -x /etc/drone.d/docker-helper.sh
     - docker build -t fracting/cygwin32 .
