@@ -32,8 +32,11 @@ else
     # workaround https://bugs.wine-staging.com/show_bug.cgi?id=653
     setfattr -x user.wine.sd ${CYGWIN_ROOT}/tmp/
     WINEDEBUG=fixme-all wine setup-x86.exe --site http://mirrors.tea-ci.org/cygwin --local-package-dir Z:/tmp/cygwin -W -P mintty -q
-    WINEDEBUG=fixme-all wine setup-x86.exe --site http://mirrors.tea-ci.org/cygwin --local-package-dir Z:/tmp/cygwin -W -P cocom,gcc,gcc-core,gcc-g++,binutils,asciidoc,autoconf,autogen,automake,bison,diffstat,diffutils,dos2unix,file,flex,gawk,gdb,gettext,gettext,gperf,grep,groff,help2man,intltool,lemon,libtool,m4,make,patch,patchutils,perl,pkg-config,pkgfile,pth,quilt,rcs,scons,sed,swig,texinfo,texinfo,ttyrec,unrar,wget,xmlto -q
-    # We do not need to worry about cache because by default it is in Z:/tmp/cygwin which will not be copied to docker image.
+    WINEDEBUG=fixme-all wine setup-x86.exe --site http://mirrors.tea-ci.org/cygwin --local-package-dir Z:/tmp/cygwin -W -P cocom,gcc,gcc-core,gcc-g++,binutils,asciidoc,autogen,bison,diffstat,diffutils,dos2unix,file,flex,gawk,gdb,gettext,gettext,gperf,grep,groff,help2man,intltool,lemon,libtool,m4,make,patch,patchutils,perl,pkg-config,pkgfile,pth,quilt,rcs,scons,sed,swig,texinfo,texinfo,ttyrec,unrar,wget,xmlto -q
+    # We do not need to worry about cache because we put it is into Z:/tmp/cygwin which will not be copied to docker image.
+
+    # FIXME These packages use symlinks which does not work with docker images: autoconf(autom4te),automake(aclocal)
+
     wineserver -w
     unset DISPLAY
     cygwin32 -c echo Init CYGWIN done.
