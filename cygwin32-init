@@ -29,8 +29,8 @@ else
     wget http://cygwin.com/setup-x86.exe
     mkdir /tmp/cygwin
     WINEDEBUG=fixme-all wine setup-x86.exe --site http://mirrors.tea-ci.org/cygwin --local-package-dir Z:/tmp/cygwin -W -q
-    # Skip this workaround since ~/.wine in Drone CI is mounted on a filesystem without xattr support
-    #setfattr -x user.wine.sd ${CYGWIN_ROOT}/tmp/
+    # workaround https://bugs.wine-staging.com/show_bug.cgi?id=653
+    setfattr -x user.wine.sd ${CYGWIN_ROOT}/tmp/
     WINEDEBUG=fixme-all wine setup-x86.exe --site http://mirrors.tea-ci.org/cygwin --local-package-dir Z:/tmp/cygwin -W -P mintty -q
     WINEDEBUG=fixme-all wine setup-x86.exe --site http://mirrors.tea-ci.org/cygwin --local-package-dir Z:/tmp/cygwin -W -P cocom,gcc,gcc-core,gcc-g++,binutils,asciidoc,autoconf,autogen,automake,bison,diffstat,diffutils,dos2unix,file,flex,gawk,gdb,gettext,gettext,gperf,grep,groff,help2man,intltool,lemon,libtool,m4,make,patch,patchutils,perl,pkg-config,pkgfile,pth,quilt,rcs,scons,sed,swig,texinfo,texinfo,ttyrec,unrar,wget,xmlto -q
     wineserver -w
