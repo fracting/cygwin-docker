@@ -10,8 +10,5 @@ COPY cygwin-shell /usr/bin/
 COPY cygwin32-rebase /usr/bin/
 COPY cygwin32-init /usr/bin/
 COPY cygwin32 /usr/bin/
-RUN cygwin32-init
-RUN cygwin32 -c cp -f /usr/bin/false /usr/bin/tput
-RUN cygwin-rebase
 
-COPY wineprefix /root/.wine
+COPY /drone/wineprefix /root/.wine
