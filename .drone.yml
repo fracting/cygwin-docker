@@ -3,5 +3,5 @@ build:
   commands:
     - apt-get update -y
     - apt-get install -y strace
-    - strace sh -x /etc/drone.d/docker-helper.sh
+    - strace -f sh -x /etc/drone.d/docker-helper.sh
     - docker build -t fracting/cygwin32 .
