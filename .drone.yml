@@ -1,5 +1,9 @@
 build:
   image: dflemstr/drone-dind
   commands:
+    - id
+    - whoami
+    - which docker
+    - ps aux
     - echo 'build cygwin32'
     - docker build -t fracting/cygwin32 .
