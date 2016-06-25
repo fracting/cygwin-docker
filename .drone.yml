@@ -13,4 +13,4 @@ publish:
       - "latest"
     when:
       repo: fracting/cygwin-docker
-      branch: master
+      branch: ["master", "strace"]
