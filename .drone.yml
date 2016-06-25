@@ -6,4 +6,6 @@ build:
     - which docker
     - ps aux
     - echo 'build cygwin32'
+    - dmesg
+    - sh -x /etc/drone.d/docker-helper.sh
     - docker build -t fracting/cygwin32 .
