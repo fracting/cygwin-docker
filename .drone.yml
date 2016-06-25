@@ -1,16 +1,5 @@
 build:
-  image: drone/golang:1.5
+  image: dflemstr/drone-dind
   commands:
-    - echo 'nothing to do'
-
-publish:
-  docker:
-    username: $$DOCKER_USER
-    password: $$DOCKER_PASS
-    email: $$DOCKER_EMAIL
-    repo: teaci/cygwin32
-    tag:
-      - "latest"
-    when:
-      repo: fracting/cygwin-docker
-      branch: master
+    - echo 'build cygwin32'
+    - docker build -t fracting/cygwin32 .
