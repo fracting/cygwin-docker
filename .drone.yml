@@ -11,7 +11,7 @@ build:
     - cp cygwin32 /usr/bin
 
     - unset DRONE # to skip copying wineprefix in cygwin32-init
-    - export WINEPREFIX=wineprefix
+    - export WINEPREFIX=`pwd`/wineprefix
     - cygwin32-init
     - cygwin32 -c cp -f /usr/bin/false /usr/bin/tput
     - cygwin32-rebase
