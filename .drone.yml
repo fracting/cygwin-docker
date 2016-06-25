@@ -10,10 +10,10 @@ build:
     - cp cygwin32-init /usr/bin
     - cp cygwin32 /usr/bin
 
-    - export WINEPREFIX=/drone/wineprefix
+    - unset DRONE # to skip copying wineprefix in cygwin32-init
+    - export WINEPREFIX=wineprefix
     - cygwin32-init
     - cygwin32 -c cp -f /usr/bin/false /usr/bin/tput
-    - ls /drone/wineprefix/drive_c
     - cygwin32-rebase
     
 

@@ -11,4 +11,4 @@ COPY cygwin32-rebase /usr/bin/
 COPY cygwin32-init /usr/bin/
 COPY cygwin32 /usr/bin/
 
-COPY /drone/wineprefix /root/.wine
+COPY wineprefix /root/.wine
