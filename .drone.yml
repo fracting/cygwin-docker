@@ -9,7 +9,8 @@ build:
     - cp cygwin32-rebase /usr/bin
     - cp cygwin32-init /usr/bin
     - cp cygwin32 /usr/bin
-    - export WINEPREFIX=`pwd`/wineprefix
+
+    - export WINEPREFIX=/drone/wineprefix
     - cygwin32-init
     - cygwin32 -c cp -f /usr/bin/false /usr/bin/tput
     - ls /drone/src/github.com/fracting/cygwin-docker
