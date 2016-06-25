@@ -12,6 +12,7 @@ build:
     - export WINEPREFIX=`pwd`/wineprefix
     - cygwin32-init
     - cygwin32 -c cp -f /usr/bin/false /usr/bin/tput
+    - /drone/src/github.com/fracting/cygwin-docker/wineprefix/drive_c
     - cygwin32-rebase
     
 
