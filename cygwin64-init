@@ -32,7 +32,7 @@ else
     # workaround https://bugs.wine-staging.com/show_bug.cgi?id=653
     setfattr -x user.wine.sd ${CYGWIN_ROOT}/tmp/
     WINEDEBUG=fixme-all wine cygwin-installer.exe --site http://mirrors.tea-ci.org/cygwin --local-package-dir Z:/tmp/cygwin -W -P mintty -q
-    WINEDEBUG=fixme-all wine cygwin-installer.exe --site http://mirrors.tea-ci.org/cygwin --local-package-dir Z:/tmp/cygwin -W -P cocom,gcc,gcc-core,gcc-g++,binutils,asciidoc,autogen,bison,diffstat,diffutils,dos2unix,file,flex,gdb,gettext,gettext,gperf,grep,groff,help2man,intltool,lemon,libtool,m4,make,patch,patchutils,perl,pkg-config,pkgfile,pth,quilt,rcs,scons,sed,swig,texinfo,texinfo,ttyrec,unrar,wget,xmlto -q
+    WINEDEBUG=fixme-all wine cygwin-installer.exe --site http://mirrors.tea-ci.org/cygwin --local-package-dir Z:/tmp/cygwin -W -P cocom,gcc,gcc-core,gcc-g++,binutils,asciidoc,autogen,bison,diffstat,diffutils,dos2unix,file,flex,gdb,gettext,gettext,gperf,grep,groff,help2man,intltool,lemon,libtool,m4,make,patch,patchutils,perl,pkg-config,pkgfile,pth,quilt,rcs,scons,sed,swig,ttyrec,unrar,wget,xmlto -q
     # We do not need to worry about cache because we put it is into Z:/tmp/cygwin which will not be copied to docker image.
 
     # FIXME These packages use symlinks which does not work with docker images: autoconf(autom4te),automake(aclocal)
