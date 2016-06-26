@@ -2,7 +2,7 @@
 
 set -e
 
-. /etc/cygwin32-env
+. /etc/cygwin64-env
 
 # hack - wineboot without display, create wineprefix in a quick way, workaround wineboot event timeout waiting for gecko and mono
 WINEDEBUG=-all DISPLAY=:55.0 wineboot; wineserver -w
@@ -26,7 +26,7 @@ else
     Xvfb :95 -ac -reset -terminate -screen 0 800x600x16 2>/dev/null &
     sleep 3
     pushd ${WINEPREFIX}/drive_c > /dev/null
-    wget http://cygwin.com/setup-x86.exe -O cygwin-installer.exe
+    wget http://cygwin.com/cygwin-installer_64.exe -O cygwin-installer.exe
     mkdir /tmp/cygwin
     WINEDEBUG=fixme-all wine cygwin-installer.exe --site http://mirrors.tea-ci.org/cygwin --local-package-dir Z:/tmp/cygwin -W -q
     # workaround https://bugs.wine-staging.com/show_bug.cgi?id=653
@@ -39,6 +39,6 @@ else
 
     wineserver -w
     unset DISPLAY
-    cygwin32 -c echo Init CYGWIN done.
+    cygwin64 -c echo Init CYGWIN done.
     popd > /dev/null
 fi
