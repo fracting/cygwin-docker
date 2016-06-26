@@ -2,6 +2,7 @@
 
 set -e
 
+export CYGWIN_DIR=cygwin
 source /etc/cygwin32-env
 
 cygwin-shell "$@"

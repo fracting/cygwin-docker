@@ -15,7 +15,7 @@ then
         mv "${WINEPREFIX}" /drone/wineprefix
     fi
     export WINEPREFIX=/drone/wineprefix
-    export CYGWIN_ROOT=${WINEPREFIX}/drive_c/cygwin
+    export CYGWIN_ROOT=${WINEPREFIX}/drive_c/${CYGWIN_DIR}
 fi
 
 if [ "${DISPLAY}" = "" ]
