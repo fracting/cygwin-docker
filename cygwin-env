@@ -11,11 +11,13 @@ fi
 
 if [ "$CYGWIN_ARCH" = 32 ]
 then
-    export CYGWIN_ROOT=${WINEPREFIX}/drive_c/cygwin
+    export CYGWIN_DIR=cygwin
+    export CYGWIN_ROOT=${WINEPREFIX}/drive_c/${CYGWIN_DIR}
     export CYGWIN_SETUP_URL=http://cygwin.com/setup-x86.exe
 elif [ "$CYGWIN_ARCH" = 64 ]
 then
-    export CYGWIN_ROOT=${WINEPREFIX}/drive_c/cygwin64
+    export CYGWIN_DIR=cygwin64
+    export CYGWIN_ROOT=${WINEPREFIX}/drive_c/${CYGWIN_DIR}
     export CYGWIN_SETUP_URL=http://cygwin.com/setup-x86_64.exe
 else
     echo "ERROR: CYGWIN_ARCH is not defined!"
