@@ -26,7 +26,7 @@ publish:
       - "latest"
     when:
       repo: fracting/cygwin-docker
-      branch: ["master", "cygwin"]
+      branch: ["master", "cygwin2"]
 
 matrix:
   arch:
