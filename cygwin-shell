@@ -2,6 +2,8 @@
 
 set -e
 
+. /etc/cygwin-env
+
 if [ "${DEBUG_WRAPPER}" = "true" ]
 then
     set -x
