@@ -1,0 +1,23 @@
+#!/usr/bin/env
+
+export TERM="xterm"
+
+if test "$WINEPREFIX"
+then
+    export WINEPREFIX=${WINEPREFIX}
+else
+    export WINEPREFIX=${HOME}/.wine
+fi
+
+if [ "$CYGWIN_ARCH" = 32 ]
+then
+    export CYGWIN_ROOT=${WINEPREFIX}/drive_c/cygwin
+    export CYGWIN_SETUP_URL=http://cygwin.com/setup-x86.exe
+elfi [ "$CYGWIN_ARCH" = 64 ]
+then
+    export CYGWIN_ROOT=${WINEPREFIX}/drive_c/cygwin64
+    export CYGWIN_SETUP_URL=http://cygwin.com/setup-x86_64.exe
+else
+    echo "ERROR: CYGWIN_ARCH is not defined!"
+    exit 1
+fi

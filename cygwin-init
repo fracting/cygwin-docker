@@ -2,7 +2,10 @@
 
 set -e
 
-. /etc/cygwin64-env
+# unset DRONE to skip copying wineprefix in cygwin-init
+export DRONE=false
+
+. /etc/cygwin-env
 
 # hack - wineboot without display, create wineprefix in a quick way, workaround wineboot event timeout waiting for gecko and mono
 WINEDEBUG=-all DISPLAY=:55.0 wineboot; wineserver -w
@@ -18,6 +21,8 @@ eof
 WINEDEBUG=-all DISPLAY=:55.0 regedit /tmp/lucida.reg ; wineserver -w
 rm /tmp/lucida.reg
 
+CYGWIN_SETUP_URL=http://cygwin.com/setup-x86.exe
+
 if test -d ${CYGWIN_ROOT}
 then
     echo Already initialized.
@@ -26,7 +31,7 @@ else
     Xvfb :95 -ac -reset -terminate -screen 0 800x600x16 2>/dev/null &
     sleep 3
     pushd ${WINEPREFIX}/drive_c > /dev/null
-    wget http://cygwin.com/setup-x86_64.exe -O cygwin-installer.exe
+    wget $CYGWIN_SETUP_URL -O cygwin-installer.exe
     mkdir /tmp/cygwin
     WINEDEBUG=fixme-all wine cygwin-installer.exe --site http://mirrors.tea-ci.org/cygwin --local-package-dir Z:/tmp/cygwin -W -q
     # workaround https://bugs.wine-staging.com/show_bug.cgi?id=653
@@ -35,10 +40,12 @@ else
     WINEDEBUG=fixme-all wine cygwin-installer.exe --site http://mirrors.tea-ci.org/cygwin --local-package-dir Z:/tmp/cygwin -W -P cocom,gcc,gcc-core,gcc-g++,binutils,asciidoc,autogen,bison,diffstat,diffutils,dos2unix,file,flex,gdb,gettext,gettext,gperf,grep,groff,help2man,intltool,lemon,libtool,m4,make,patch,patchutils,perl,pkg-config,pkgfile,pth,quilt,rcs,scons,sed,swig,ttyrec,unrar,wget,xmlto -q
     # We do not need to worry about cache because we put it is into Z:/tmp/cygwin which will not be copied to docker image.
 
-    # FIXME These packages use symlinks which does not work with docker images: autoconf(autom4te),automake(aclocal)
+    # FIXME These packages use symlinks which does not work with docker images: autoconf(autom4te),automake(aclocal),gawk(awk),python(python)
 
     wineserver -w
     unset DISPLAY
-    cygwin64 -c echo Init CYGWIN done.
+    cygwin-rebase
+    cygwin-shell -c cp -f /usr/bin/false /usr/bin/tput
+    cygwin-shell -c echo Init CYGWIN done.
     popd > /dev/null
 fi

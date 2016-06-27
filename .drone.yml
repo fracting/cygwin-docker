@@ -4,26 +4,20 @@ build:
     - wget http://security.ubuntu.com/ubuntu/pool/main/f/freetype/libfreetype6_2.5.2-1ubuntu2_i386.deb && wget http://security.ubuntu.com/ubuntu/pool/main/f/freetype/libfreetype6_2.5.2-1ubuntu2_amd64.deb && dpkg -i libfreetype6_2.5.2-1ubuntu2_amd64.deb libfreetype6_2.5.2-1ubuntu2_i386.deb
     - export WINPTY_SHOW_CONSOLE=1
 
-    - cp cygwin32-env /etc
-    - cp cygwin64-env /etc
+    - cp cygwin-env /etc
     - cp cygwin-shell /usr/bin
-    - cp cygwin32-rebase /usr/bin
-    - cp cygwin64-rebase /usr/bin
-    - cp cygwin32-init /usr/bin
-    - cp cygwin64-init /usr/bin
+    - cp cygwin-rebase /usr/bin
+    - cp cygwin-init /usr/bin
     - cp cygwin32 /usr/bin
     - cp cygwin64 /usr/bin
 
-    - unset DRONE # to skip copying wineprefix in cygwin32-init
-    - export WINEPREFIX=`pwd`/wineprefix
-    - cygwin$$arch-init
-    - cygwin$$arch -c cp -f /usr/bin/false /usr/bin/tput
-    - cygwin$$arch-rebase
+# unset DRONE to skip copying wineprefix in cygwin-init
+    - DRONE=false WINEPREFIX=`pwd`/wineprefix CYGWIN_ARCH=$$arch cygwin-init
     
 
 publish:
   docker:
-    file: Dockerfile.$$arch
+    file: Dockerfile
     username: $$DOCKER_USER
     password: $$DOCKER_PASS
     email: $$DOCKER_EMAIL

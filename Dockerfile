@@ -5,10 +5,11 @@ RUN wget http://security.ubuntu.com/ubuntu/pool/main/f/freetype/libfreetype6_2.5
 # Work around https://bugs.wine-staging.com/show_bug.cgi?id=626
 ENV WINPTY_SHOW_CONSOLE 1
 
-COPY cygwin32-env /etc/
+COPY cygwin-env /etc/
 COPY cygwin-shell /usr/bin/
-COPY cygwin32-rebase /usr/bin/
-COPY cygwin32-init /usr/bin/
+COPY cygwin-rebase /usr/bin/
+COPY cygwin-init /usr/bin/
 COPY cygwin32 /usr/bin/
+COPY cygwin64 /usr/bin/
 
 COPY wineprefix /root/.wine
