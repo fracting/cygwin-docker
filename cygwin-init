@@ -32,8 +32,20 @@ else
     wget $CYGWIN_SETUP_URL -O cygwin-installer.exe
     mkdir /tmp/cygwin
     WINEDEBUG=fixme-all wine cygwin-installer.exe --site http://mirrors.tea-ci.org/cygwin --local-package-dir Z:/tmp/cygwin -W -q
-    # workaround https://bugs.wine-staging.com/show_bug.cgi?id=653
+
+    # Workaround https://bugs.wine-staging.com/show_bug.cgi?id=653
     setfattr -x user.wine.sd ${CYGWIN_ROOT}/tmp/
+
+    # Workaround https://bugs.wine-staging.com/show_bug.cgi?id=403
+    cat > ${CYGWIN_ROOT}/etc/workaround_bug_403 <<  EOF
+# Workaround https://bugs.wine-staging.com/show_bug.cgi?id=403
+
+/usr/bin/test -h /dev/stdin  || ln -sf /proc/self/fd/0 /dev/stdin
+/usr/bin/test -h /dev/stdout || ln -sf /proc/self/fd/1 /dev/stdout
+/usr/bin/test -h /dev/stderr || ln -sf /proc/self/fd/2 /dev/stderr
+/usr/bin/test -h /dev/fd     || ln -sf /proc/self/fd   /dev/fd
+EOF
+
     WINEDEBUG=fixme-all wine cygwin-installer.exe --site http://mirrors.tea-ci.org/cygwin --local-package-dir Z:/tmp/cygwin -W -P mintty -q
     WINEDEBUG=fixme-all wine cygwin-installer.exe --site http://mirrors.tea-ci.org/cygwin --local-package-dir Z:/tmp/cygwin -W -P cocom,gcc,gcc-core,gcc-g++,binutils,asciidoc,autogen,bison,diffstat,diffutils,dos2unix,file,flex,gdb,gettext,gettext,gperf,grep,groff,help2man,intltool,lemon,libtool,m4,make,patch,patchutils,perl,pkg-config,pkgfile,pth,quilt,rcs,scons,sed,swig,ttyrec,unrar,wget,xmlto -q
     # We do not need to worry about cache because we put it is into Z:/tmp/cygwin which will not be copied to docker image.
