@@ -3,7 +3,7 @@ build:
   commands:
     - wget http://security.ubuntu.com/ubuntu/pool/main/f/freetype/libfreetype6_2.5.2-1ubuntu2_i386.deb && wget http://security.ubuntu.com/ubuntu/pool/main/f/freetype/libfreetype6_2.5.2-1ubuntu2_amd64.deb && dpkg -i libfreetype6_2.5.2-1ubuntu2_amd64.deb libfreetype6_2.5.2-1ubuntu2_i386.deb
     - export WINPTY_SHOW_CONSOLE=1
-    - agt-get install -y attr
+    - apt-get install -y attr
 
     - cp cygwin-env /etc
     - cp cygwin-shell /usr/bin
