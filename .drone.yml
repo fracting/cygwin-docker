@@ -1,7 +1,7 @@
 build:
   image: teaci/cygwin$$arch:testing
   pull: true
-  shell: msys$$arch
+  shell: cygwin$$arch
   commands:
     - echo 'Prepare'
     - if [ $$arch = 32 ]; then setup=setup-x86.exe; fi
