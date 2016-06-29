@@ -14,6 +14,10 @@ build:
 # unset DRONE to skip copying wineprefix in cygwin-init
     - DRONE=false WINEPREFIX=`pwd`/wineprefix CYGWIN_ARCH=$$arch cygwin-init
 
+notify:
+  gitter:
+    webhook: https://webhooks.gitter.im/e/d8f2032e40a8e78a3882
+
 publish:
   docker:
     file: Dockerfile
@@ -22,9 +26,10 @@ publish:
     email: $$DOCKER_EMAIL
     repo: teaci/cygwin$$arch
     tag:
-      - "latest"
+      - "testing"
+      - "w1.9.10-c2.5.2-1t"
     when:
-      repo: fracting/cygwin-docker
+      repo: fracting/cygwin-docker # case sensitive
       branch: ["master", "cygwin-debug"]
 
 matrix:
