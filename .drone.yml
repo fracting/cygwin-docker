@@ -20,7 +20,8 @@ build:
     - ls /usr/ssl/certs /etc/pki/tls/certs || true
     - cat /etc/pki/tls/certs/ca-bundle.crt || true
     - file /etc/pki/tls/certs/ca-bundle.crt || true
-    - ln -sf /etc/pki/tls/certs/ca-bundle.crt /etc/pki/ca-trust/extracted/pem/tls-ca-bundle.pem
+    - ln -sf /etc/pki/ca-trust/extracted/pem/tls-ca-bundle.pem /etc/pki/tls/certs/ca-bundle.crt
+    - file /etc/pki/tls/certs/ca-bundle.crt || true
 
     - git clone --depth 50 https://github.com/cygwin/cygwin
 #    - cd cygwin
