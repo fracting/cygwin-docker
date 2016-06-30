@@ -33,8 +33,8 @@ then
     rm ${CYGWIN_ROOT}/bin/awk
     cp ${CYGWIN_ROOT}/bin/gawk.exe ${CYGWIN_ROOT}/bin/awk.exe
     rm -rf ${CYGWIN_ROOT}/etc/pki/tls/certs
-    cp -rf --preserve=xattr /usr/ssl/certs /etc/pki/tls/certs
-    cp -f  --preserve=xattr /etc/pki/ca-trust/extracted/pem/tls-ca-bundle.pem /etc/pki/tls/certs/ca-bundle.crt
+    cp -rf --preserve=xattr ${CYGWIN_ROOT}/usr/ssl/certs ${CYGWIN_ROOT}/etc/pki/tls/certs
+    cp -f  --preserve=xattr ${CYGWIN_ROOT}/etc/pki/ca-trust/extracted/pem/tls-ca-bundle.pem ${CYGWIN_ROOT}/etc/pki/tls/certs/ca-bundle.crt
     echo
 fi
 
