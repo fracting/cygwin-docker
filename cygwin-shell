@@ -32,6 +32,9 @@ then
     WINEDEBUG=-all wine c:/cygwin-installer.exe --site http://mirrors.tea-ci.org/cygwin --local-package-dir Z:/tmp/cygwin -W -P autoconf,automake,gawk,texinfo,python,asciidoc,gettext-devel,git,intltool,scons,xmlto,wget -q &> /dev/null
     rm ${CYGWIN_ROOT}/bin/awk
     cp ${CYGWIN_ROOT}/bin/gawk.exe ${CYGWIN_ROOT}/bin/awk.exe
+    rm -rf ${CYGWIN_ROOT}/etc/pki/tls/certs
+    cp -rf --preserve=xattr /usr/ssl/certs /etc/pki/tls/certs
+    cp -f  --preserve=xattr /etc/pki/ca-trust/extracted/pem/tls-ca-bundle.pem /etc/pki/tls/certs/ca-bundle.crt
     echo
 fi
 
