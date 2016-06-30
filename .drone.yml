@@ -13,9 +13,14 @@ build:
     - ls /etc/pki/tls/certs/ca-bundle.crt || true
     - file /etc/pki/tls/certs/ca-bundle.crt || true
     - cat /etc/pki/tls/certs/ca-bundle.crt || true
-    - ./${setup} --site http://mirrors.tea-ci.org/cygwin --local-package-dir Z:/tmp/cygwin -W -P ca-certificates -q &> /dev/null
-    - git clone --depth 50 https://github.com/cygwin/cygwin
-    - cd cygwin
+    - cygcheck -n ca-certificates
+    - cygcheck -N ca-certificates
+    - ./${setup} --site http://mirrors.tea-ci.org/cygwin --local-package-dir Z:/tmp/cygwin -W -P ca-certificates,unzip -q &> /dev/null
+#    - git clone --depth 50 https://github.com/cygwin/cygwin
+#    - cd cygwin
+    - wget https://github.com/cygwin/cygwin/archive/master.zip
+    - unzip master.zip
+    - cd cygwin-master
     - srcdir=`pwd`
     - builddir=/oss/build-stage1
     - installdir=/oss/install-stage1
