@@ -40,12 +40,12 @@ else
     cp ${CYGWIN_ROOT}/etc/postinstall/bash.sh.done ${CYGWIN_ROOT}/etc/profile.d/workaround_bug_403.sh
 
     WINEDEBUG=fixme-all wine cygwin-installer.exe --site http://mirrors.tea-ci.org/cygwin --local-package-dir Z:/tmp/cygwin -W -P mintty -q
-    WINEDEBUG=fixme-all wine cygwin-installer.exe --site http://mirrors.tea-ci.org/cygwin --local-package-dir Z:/tmp/cygwin -W -P cocom,gcc,gcc-core,gcc-g++,binutils,autogen,bison,diffstat,diffutils,dos2unix,file,flex,gettext,gperf,grep,groff,help2man,lemon,libtool,m4,make,patch,patchutils,perl,pkg-config,pkgfile,pth,quilt,rcs,sed,swig,ttyrec,unrar,wget -q
+    WINEDEBUG=fixme-all wine cygwin-installer.exe --site http://mirrors.tea-ci.org/cygwin --local-package-dir Z:/tmp/cygwin -W -P cocom,gcc,gcc-core,gcc-g++,binutils,autogen,bison,diffstat,diffutils,dos2unix,file,flex,gettext,gperf,grep,groff,help2man,lemon,libtool,m4,make,patch,patchutils,perl,pkg-config,pkgfile,pth,quilt,rcs,sed,swig,ttyrec,unrar,unzip -q
     #WINEDEBUG=fixme-all wine cygwin-installer.exe --site http://mirrors.tea-ci.org/cygwin --local-package-dir Z:/tmp/cygwin -W -P cocom,gcc,gcc-core,gcc-g++,binutils,autogen,bison,diffstat,diffutils,dos2unix,file,flex,gettext,gettext-develgperf,grep,groff,help2man,intltool,lemon,libtool,m4,make,patch,patchutils,perl,pkg-config,pkgfile,pth,quilt,rcs,scons,sed,swig,ttyrec,unrar,wget,xmlto -q
     # We do not need to worry about cache because we put it is into Z:/tmp/cygwin which will not be copied to docker image.
 
-    # FIXME These packages use symlinks which does not work with docker images: autoconf(autom4te),automake(aclocal),gawk(awk),python(python)
-    # And packages depending on them: asciidoc,gettext-devel,git,intltool,scons,xmlto
+    # FIXME These packages use symlinks which does not work with docker images: autoconf(autom4te),automake(aclocal),gawk(awk),python(python),ca-certificates
+    # And packages depending on them: asciidoc,gettext-devel,git,intltool,scons,xmlto,wget
 
     wineserver -w
     unset DISPLAY

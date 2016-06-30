@@ -29,9 +29,9 @@ then
     echo "# Workaround docker image limitation"
     echo "# FIXME: These packages can't be preinstalled inside docker image because docker image does not support cygwin symlink."
     #echo "$ wine c:/cygwin-installer.exe --site http://mirrors.tea-ci.org/cygwin --local-package-dir Z:/tmp/cygwin -W -x autoconf,automake,gawk,texinfo,python -q"
-    echo "$ wine c:/cygwin-installer.exe --site http://mirrors.tea-ci.org/cygwin --local-package-dir Z:/tmp/cygwin -W -P autoconf,automake,gawk,texinfo,python,asciidoc,gettext-devel,git,intltool,scons,xmlto -q"
+    echo "$ wine c:/cygwin-installer.exe --site http://mirrors.tea-ci.org/cygwin --local-package-dir Z:/tmp/cygwin -W -P autoconf,automake,gawk,texinfo,python,asciidoc,gettext-devel,git,intltool,scons,xmlto,wget -q"
     #WINEDEBUG=-all wine c:/cygwin-installer.exe --site http://mirrors.tea-ci.org/cygwin --local-package-dir Z:/tmp/cygwin -W -x autoconf,automake,gawk,texinfo,python -q &> /dev/null
-    WINEDEBUG=-all wine c:/cygwin-installer.exe --site http://mirrors.tea-ci.org/cygwin --local-package-dir Z:/tmp/cygwin -W -P autoconf,automake,gawk,texinfo,python,asciidoc,gettext-devel,git,intltool,scons,xmlto -q &> /dev/null
+    WINEDEBUG=-all wine c:/cygwin-installer.exe --site http://mirrors.tea-ci.org/cygwin --local-package-dir Z:/tmp/cygwin -W -P autoconf,automake,gawk,texinfo,python,asciidoc,gettext-devel,git,intltool,scons,xmlto,wget -q &> /dev/null
     echo
 fi
 
