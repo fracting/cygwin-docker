@@ -32,7 +32,6 @@ then
     echo "$ wine c:/cygwin-installer.exe --site http://mirrors.tea-ci.org/cygwin --local-package-dir Z:/tmp/cygwin -W -P autoconf,automake,gawk,texinfo,python,asciidoc,gettext-devel,git,intltool,scons,xmlto -q"
     #WINEDEBUG=-all wine c:/cygwin-installer.exe --site http://mirrors.tea-ci.org/cygwin --local-package-dir Z:/tmp/cygwin -W -x autoconf,automake,gawk,texinfo,python -q &> /dev/null
     WINEDEBUG=-all wine c:/cygwin-installer.exe --site http://mirrors.tea-ci.org/cygwin --local-package-dir Z:/tmp/cygwin -W -P autoconf,automake,gawk,texinfo,python,asciidoc,gettext-devel,git,intltool,scons,xmlto -q &> /dev/null
-    getfattr ${CYGWIN_ROOT}/usr/bin/python
     echo
 fi
 
