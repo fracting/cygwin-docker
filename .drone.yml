@@ -12,6 +12,13 @@ build:
     - file /usr/bin/python* || true
     - ls /etc/pki/tls/certs/ca-bundle.crt || true
     - file /etc/pki/tls/certs/ca-bundle.crt || true
+    - file /etc/pki/tls/certs || true
+    - file /etc/pki/tls || true
+    - file /etc/pki || true
+    - file /etc || true
+    - cygcheck -p /etc/pki || true
+    - cygcheck -p /etc/pki/tls || true
+    - cygcheck -p /etc/pki/tls/certs || true
     - cat /etc/pki/tls/certs/ca-bundle.crt || true
     - ./${setup} --site http://mirrors.tea-ci.org/cygwin --local-package-dir Z:/tmp/cygwin -W -P cygcheck-dep -q &> /dev/null
     - cygcheck-dep -n ca-certificates
