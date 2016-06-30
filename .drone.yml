@@ -10,6 +10,8 @@ build:
     - ./${setup} --site http://mirrors.tea-ci.org/cygwin --local-package-dir Z:/tmp/cygwin -W -P gettext-devel,zlib-devel,libiconv,libiconv-devel,mingw64-i686-gcc-g++,mingw64-i686-zlib,mingw64-x86_64-gcc-core,mingw64-x86_64-gcc-g++,mingw64-x86_64-zlib,dejagnu,dblatex,docbook-xml45,docbook-xsl,docbook2X,xmlto -q &> /dev/null
     - ls /usr/bin/python* || true
     - file /usr/bin/python* || true
+    - git clone --depth 50 https://github.com/cygwin/cygwin
+    - cd cygwin
     - srcdir=`pwd`
     - builddir=/oss/build-stage1
     - installdir=/oss/install-stage1
