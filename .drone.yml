@@ -6,31 +6,11 @@ build:
     - echo 'Prepare'
     - if [ $$arch = 32 ]; then setup=setup-x86.exe; fi
     - if [ $$arch = 64 ]; then setup=setup-x86_64.exe; fi
-    - wget http://cygwin.com/${setup}
+    - wget -q http://cygwin.com/${setup}
     - ./${setup} --site http://mirrors.tea-ci.org/cygwin --local-package-dir Z:/tmp/cygwin -W -P gettext-devel,zlib-devel,libiconv,libiconv-devel,mingw64-i686-gcc-g++,mingw64-i686-zlib,mingw64-x86_64-gcc-core,mingw64-x86_64-gcc-g++,mingw64-x86_64-zlib,dejagnu,dblatex,docbook-xml45,docbook-xsl,docbook2X,xmlto -q &> /dev/null
-    - ls /usr/bin/python* || true
-    - file /usr/bin/python* || true
-    - ls /etc/pki/tls/certs/ca-bundle.crt || true
-    - file /etc/pki/tls/certs/ca-bundle.crt || true
-    - file /etc/pki/tls/certs || true
-    - file /etc/pki/tls || true
-    - file /etc/pki || true
-    - file /etc || true
-    - ln -sf /usr/ssl/certs /etc/pki/tls/certs
-    - ls /usr/ssl/certs /etc/pki/tls/certs || true
-    - cat /etc/pki/tls/certs/ca-bundle.crt || true
-    - file /etc/pki/tls/certs/ca-bundle.crt || true
-    - ln -sf /etc/pki/ca-trust/extracted/pem/tls-ca-bundle.pem /etc/pki/tls/certs/ca-bundle.crt
-    - file /etc/pki/tls/certs/ca-bundle.crt || true
 
-    - git clone --depth 50 https://github.com/cygwin/cygwin
-#    - cd cygwin
-
-#    - git clone --depth 50 https://github.com/cygwin/cygwin
-#    - cd cygwin
-    - wget https://github.com/cygwin/cygwin/archive/master.zip
-    - unzip master.zip
-    - cd cygwin-master
+    - git clone --depth 1 https://github.com/cygwin/cygwin
+    - cd cygwin
     - srcdir=`pwd`
     - builddir=/oss/build-stage1
     - installdir=/oss/install-stage1
@@ -40,7 +20,6 @@ build:
     - make
     - make install
     - sha1sum ${installdir}/bin/cygwin1.dll /bin/cygwin1.dll
-
 
 notify:
   gitter:
@@ -55,7 +34,7 @@ publish:
     repo: teaci/cygwin$$arch # dockerhub repo, don't confused with github repo.
     tag:
       - "latest"
-      - "w1.9.10-c2.5.2-1t"
+      - "w1.9.10-c2.5.2-2t"
     when:
       repo: fracting/cygwin-docker # case sensitive
       branch: release # only build latest tag in release branch.
