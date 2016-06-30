@@ -45,7 +45,7 @@ else
     WINEDEBUG=fixme-all wine cygwin-installer.exe --site http://mirrors.tea-ci.org/cygwin --local-package-dir Z:/tmp/cygwin -W -P cocom,gcc,gcc-core,gcc-g++,binutils,autogen,bison,diffstat,diffutils,dos2unix,file,flex,gettext,gperf,grep,groff,help2man,lemon,libtool,m4,make,patch,patchutils,perl,pkg-config,pkgfile,pth,quilt,rcs,sed,swig,ttyrec,unrar,unzip -q
     ls ${CYGWIN_ROOT}/bin/awk || true
     WINEDEBUG=-all wine c:/cygwin-installer.exe --site http://mirrors.tea-ci.org/cygwin --local-package-dir Z:/tmp/cygwin -W -x gawk,texinfo,ca-certificates -q &> /dev/null
-    ls ${CYGWIN_ROOT}/bin/awk || true
+    ls ${CYGWIN_ROOT}/bin/*awk* || true
     ls ${CYGWIN_ROOT}/etc/pki/tls || true
     file ${CYGWIN_ROOT}/etc/pki/tls/certs || true
     #WINEDEBUG=fixme-all wine cygwin-installer.exe --site http://mirrors.tea-ci.org/cygwin --local-package-dir Z:/tmp/cygwin -W -P cocom,gcc,gcc-core,gcc-g++,binutils,autogen,bison,diffstat,diffutils,dos2unix,file,flex,gettext,gettext-develgperf,grep,groff,help2man,intltool,lemon,libtool,m4,make,patch,patchutils,perl,pkg-config,pkgfile,pth,quilt,rcs,scons,sed,swig,ttyrec,unrar,wget,xmlto -q
