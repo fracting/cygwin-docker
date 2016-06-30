@@ -20,10 +20,7 @@ build:
     - cygcheck -p /etc/pki/tls || true
     - cygcheck -p /etc/pki/tls/certs || true
     - cat /etc/pki/tls/certs/ca-bundle.crt || true
-    - ./${setup} --site http://mirrors.tea-ci.org/cygwin --local-package-dir Z:/tmp/cygwin -W -P cygcheck-dep -q &> /dev/null
-    - cygcheck-dep -n ca-certificates
-    - cygcheck-dep -N ca-certificates
-    - ./${setup} --site http://mirrors.tea-ci.org/cygwin --local-package-dir Z:/tmp/cygwin -W -P ca-certificates,unzip -q &> /dev/null
+    - ln -sf /usr/ssl/certs /etc/pki/tls/certs
 #    - git clone --depth 50 https://github.com/cygwin/cygwin
 #    - cd cygwin
     - wget https://github.com/cygwin/cygwin/archive/master.zip
