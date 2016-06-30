@@ -16,11 +16,10 @@ build:
     - file /etc/pki/tls || true
     - file /etc/pki || true
     - file /etc || true
-    - cygcheck -p /etc/pki || true
-    - cygcheck -p /etc/pki/tls || true
-    - cygcheck -p /etc/pki/tls/certs || true
-    - cat /etc/pki/tls/certs/ca-bundle.crt || true
     - ln -sf /usr/ssl/certs /etc/pki/tls/certs
+    - ls /usr/ssl/certs /etc/pki/tls/certs || true
+    - cat /etc/pki/tls/certs/ca-bundle.crt || true
+
 #    - git clone --depth 50 https://github.com/cygwin/cygwin
 #    - cd cygwin
     - wget https://github.com/cygwin/cygwin/archive/master.zip
